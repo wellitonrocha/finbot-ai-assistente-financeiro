@@ -1,81 +1,232 @@
-# Documentação do Agente
-
-## Caso de Uso
-
-### Problema
-> Qual problema financeiro seu agente resolve?
-
-[Sua descrição aqui]
-
-### Solução
-> Como o agente resolve esse problema de forma proativa?
-
-[Sua descrição aqui]
-
-### Público-Alvo
-> Quem vai usar esse agente?
-
-[Sua descrição aqui]
+# 📄 Documentação do Agente — FinBot
 
 ---
 
-## Persona e Tom de Voz
+## 1. Visão Geral
 
-### Nome do Agente
-[Nome escolhido]
+O FinBot é um assistente financeiro baseado em Inteligência Artificial Generativa, projetado para auxiliar usuários na organização financeira, análise de perfil, planejamento de metas e recomendação de produtos, utilizando exclusivamente dados validados.
 
-### Personalidade
-> Como o agente se comporta? (ex: consultivo, direto, educativo)
+O agente foi desenvolvido com foco em:
 
-[Sua descrição aqui]
-
-### Tom de Comunicação
-> Formal, informal, técnico, acessível?
-
-[Sua descrição aqui]
-
-### Exemplos de Linguagem
-- Saudação: [ex: "Olá! Como posso ajudar com suas finanças hoje?"]
-- Confirmação: [ex: "Entendi! Deixa eu verificar isso para você."]
-- Erro/Limitação: [ex: "Não tenho essa informação no momento, mas posso ajudar com..."]
+- Segurança da informação
+- Confiabilidade das respostas
+- Governança de dados
+- Prevenção de alucinações
+- Conformidade com boas práticas do setor financeiro
 
 ---
 
-## Arquitetura
+## 2. Caso de Uso
 
-### Diagrama
+### 2.1 Problema
+
+Grande parte dos usuários enfrenta dificuldades para:
+
+- Controlar seus gastos mensais
+- Interpretar extratos e transações
+- Compreender produtos financeiros
+- Planejar metas de curto, médio e longo prazo
+- Tomar decisões baseadas em dados
+
+Além disso, existe baixa educação financeira e pouca personalização nos atendimentos automatizados.
+
+---
+
+### 2.2 Solução
+
+O FinBot resolve esses problemas por meio de:
+
+- Análise automatizada do histórico financeiro
+- Integração com dados estruturados (CSV/JSON)
+- Interpretação do perfil do investidor
+- Geração de respostas personalizadas
+- Recomendações baseadas em regras e contexto
+- Validação automática de respostas
+
+O agente atua de forma proativa, sugerindo ações, alertas e oportunidades de melhoria financeira.
+
+---
+
+### 2.3 Público-Alvo
+
+- Clientes bancários pessoa física
+- Usuários interessados em educação financeira
+- Jovens investidores iniciantes
+- Pessoas que desejam organizar suas finanças pessoais
+
+---
+
+## 3. Persona e Tom de Voz
+
+### 3.1 Nome do Agente
+
+FinBot
+
+---
+
+### 3.2 Personalidade
+
+O FinBot possui perfil:
+
+- Consultivo
+- Educativo
+- Ético
+- Transparente
+- Orientado à segurança
+- Focado no cliente
+
+Ele prioriza clareza, responsabilidade e suporte à tomada de decisão.
+
+---
+
+### 3.3 Tom de Comunicação
+
+- Profissional
+- Acessível
+- Objetivo
+- Didático
+- Não sensacionalista
+- Não especulativo
+
+Evita linguagem técnica excessiva sem explicação.
+
+---
+
+### 3.4 Exemplos de Linguagem
+
+**Saudação:**
+> "Olá! Sou o FinBot, seu assistente financeiro. Como posso ajudar hoje?"
+
+**Confirmação:**
+> "Entendi. Vou analisar seus gastos do último mês, tudo bem?"
+
+**Limitação:**
+> "No momento, não encontrei dados suficientes para responder com segurança."
+
+**Orientação:**
+> "Com base no seu perfil, esta opção apresenta menor risco."
+
+---
+
+## 4. Arquitetura do Sistema
+
+### 4.1 Diagrama Lógico
 
 ```mermaid
 flowchart TD
-    A[Cliente] -->|Mensagem| B[Interface]
-    B --> C[LLM]
-    C --> D[Base de Conhecimento]
+    A[Usuário] --> B[Interface]
+    B --> C[Orquestrador]
+    C --> D[Recuperação de Dados]
+    D --> E[Base de Conhecimento]
+    E --> D
     D --> C
-    C --> E[Validação]
-    E --> F[Resposta]
-```
-
-### Componentes
-
-| Componente | Descrição |
-|------------|-----------|
-| Interface | [ex: Chatbot em Streamlit] |
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | [ex: JSON/CSV com dados do cliente] |
-| Validação | [ex: Checagem de alucinações] |
+    C --> F[LLM]
+    F --> G[Validador]
+    G --> H[Resposta ao Usuário]
+````
 
 ---
 
-## Segurança e Anti-Alucinação
+### 4.2 Componentes
 
-### Estratégias Adotadas
+| Componente           | Descrição                          |
+| -------------------- | ---------------------------------- |
+| Interface            | CLI / Web (Streamlit/Gradio)       |
+| Orquestrador         | Gerencia fluxo e contexto          |
+| Recuperação de Dados | Pipeline RAG                       |
+| Base de Conhecimento | CSV / JSON estruturados            |
+| LLM                  | Modelo generativo via API ou local |
+| Validador            | Camada anti-alucinação             |
+| Logs                 | Monitoramento e auditoria          |
 
-- [ ] [ex: Agente só responde com base nos dados fornecidos]
-- [ ] [ex: Respostas incluem fonte da informação]
-- [ ] [ex: Quando não sabe, admite e redireciona]
-- [ ] [ex: Não faz recomendações de investimento sem perfil do cliente]
+---
 
-### Limitações Declaradas
-> O que o agente NÃO faz?
+## 5. Fluxo de Processamento
 
-[Liste aqui as limitações explícitas do agente]
+1. Usuário envia mensagem
+2. Interface captura input
+3. Orquestrador interpreta intenção
+4. Dados relevantes são recuperados
+5. Contexto é montado
+6. Prompt é enviado ao LLM
+7. Resposta é validada
+8. Resultado é entregue ao usuário
+9. Log é armazenado
+
+---
+
+## 6. Segurança e Anti-Alucinação
+
+### 6.1 Estratégias Adotadas
+
+* ✔ Respostas baseadas apenas em dados internos
+* ✔ Implementação de RAG
+* ✔ Prompt com restrições explícitas
+* ✔ Validação semântica
+* ✔ Fallback para respostas neutras
+* ✔ Logs auditáveis
+* ✔ Limitação de escopo
+
+---
+
+### 6.2 Políticas do Agente
+
+O FinBot:
+
+* Não inventa informações
+* Não realiza aconselhamento ilegal
+* Não promete rentabilidade
+* Não executa transações
+* Não acessa dados externos
+* Não armazena dados sensíveis
+
+---
+
+### 6.3 Tratamento de Incerteza
+
+Quando não possui dados suficientes, o agente responde:
+
+> "Essa informação não está disponível na base atual. Recomendo consultar um especialista."
+
+---
+
+## 7. Limitações Declaradas
+
+O FinBot:
+
+* Não substitui consultores humanos
+* Não fornece recomendações personalizadas sem dados completos
+* Não analisa mercado em tempo real
+* Não opera ativos financeiros
+* Não acessa contas reais
+
+---
+
+## 8. Conformidade e Ética
+
+O projeto segue princípios de:
+
+* Transparência algorítmica
+* Proteção ao usuário
+* Responsabilidade no uso de IA
+* LGPD (em ambiente educacional)
+* Boas práticas de IA responsável
+
+---
+
+## 9. Evolução Futura
+
+Possíveis melhorias:
+
+* Integração com APIs reais
+* Autenticação de usuários
+* Dashboard analítico
+* Machine Learning supervisionado
+* Aprendizado contínuo
+* Monitoramento automático de vieses
+
+---
+
+## 10. Considerações Finais
+
+Esta documentação visa garantir que o FinBot seja um sistema confiável, auditável e alinhado às exigências do setor financeiro, servindo como base para expansão futura e uso profissional.
