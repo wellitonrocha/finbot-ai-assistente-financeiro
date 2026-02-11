@@ -1,149 +1,155 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 🤖 FinBot — Assistente Financeiro com IA Generativa
 
-## Contexto
+Assistente virtual inteligente para análise financeira, planejamento de metas e recomendação de produtos, utilizando Inteligência Artificial Generativa com foco em segurança, governança e confiabilidade.
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
-
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+Projeto desenvolvido no Bootcamp **Bradesco GenAI & Dados (DIO)**.
 
 ---
 
-## O Que Você Deve Entregar
+## 📖 Contexto
 
-### 1. Documentação do Agente
+Com o avanço da IA Generativa, instituições financeiras passaram a demandar sistemas capazes de ir além de chatbots tradicionais.
 
-Defina **o que** seu agente faz e **como** ele funciona:
+Este projeto propõe a construção de um **assistente financeiro proativo**, capaz de:
 
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
+- Interpretar dados do cliente
+- Analisar padrões de consumo
+- Sugerir soluções personalizadas
+- Garantir respostas seguras
+- Evitar alucinações
 
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
-
----
-
-### 2. Base de Conhecimento
-
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+Inspirado na assistente BIA, do Bradesco.
 
 ---
 
-### 3. Prompts do Agente
+## 🎯 Objetivo do Projeto
 
-Documente os prompts que definem o comportamento do seu agente:
+Desenvolver um agente inteligente capaz de:
 
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
+- Auxiliar no controle financeiro pessoal
+- Analisar perfil de investidor
+- Apoiar o planejamento de metas
+- Recomendar produtos adequados
+- Promover educação financeira
 
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
+Tudo baseado exclusivamente em dados validados.
 
 ---
 
-### 5. Avaliação e Métricas
+## ⚙️ Funcionalidades
 
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
+- 📊 Análise automática de gastos
+- 👤 Avaliação de perfil financeiro
+- 📈 Sugestão de produtos
+- 🧠 Geração de respostas com LLM
+- 🔐 Camada de validação anti-alucinação
+- 🗂️ Consulta à base de conhecimento
 
 ---
 
-### 6. Pitch
+## 🏗️ Arquitetura do Sistema
 
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
+Fluxo principal:
 
 ```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+Usuário → Interface → Orquestrador → Base de Dados → LLM → Validador → Resposta
+```
+
+Componentes:
+
+- Interface (CLI / Web)
+- Backend em Python
+- Motor de IA Generativa
+- Módulo de Recuperação (RAG)
+- Camada de Segurança
+- Logs e Monitoramento
+
+---
+
+## 🧰 Tecnologias Utilizadas
+
+- Python
+- Pandas
+- LLM (API / Local)
+- LangChain (opcional)
+- Streamlit / Gradio (opcional)
+- Git & GitHub
+
+---
+
+## ▶️ Como Executar o Projeto
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/wellitonrocha/finbot-ai-assistente-financeiro
+cd finbot-ai-assistente-financeiro
+```
+
+2. Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Execute a aplicação:
+
+```bash
+python src/app.py
 ```
 
 ---
 
-## Dicas Finais
+## 📁 Estrutura do Repositório
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+```
+📁 finbot-ai-assistente-financeiro/
+│
+├── data/        # Dados simulados
+├── docs/        # Documentação técnica
+├── src/         # Código-fonte
+├── assets/      # Diagramas e imagens
+└── examples/    # Exemplos
+```
+
+---
+
+## 📊 Avaliação e Métricas
+
+A qualidade do agente é avaliada por:
+
+* Precisão das respostas
+* Taxa de alucinação
+* Tempo de resposta
+* Coerência com perfil
+* Satisfação do usuário
+
+Detalhes em: `docs/04-metricas.md`
+
+---
+
+## 🗺️ Roadmap
+
+* [x] Estrutura inicial
+* [x] Documentação base
+* [ ] Implementação RAG
+* [ ] Interface Web
+* [ ] Métricas automatizadas
+* [ ] Deploy
+
+---
+
+## 👨‍💻 Autor
+
+**Welliton da Rocha**
+
+Analista de Dados | IA Aplicada | Power BI | Python | SQL
+
+LinkedIn: [www.linkedin.com/in/welliton-rocha-data-analytics](https://www.linkedin.com/in/welliton-rocha-data-analytics/)  
+GitHub: [https://github.com/wellitonrocha](https://github.com/wellitonrocha)
+
+---
+
+## 📜 Licença
+
+Projeto educacional desenvolvido para fins de estudo e portfólio.
